@@ -1,0 +1,13 @@
+table {
+  width: 100%;
+}
+.avatar {
+  vertical-align: middle;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+.stars-marked {
+  content:'\f005';
+  color: #FC0;
+}

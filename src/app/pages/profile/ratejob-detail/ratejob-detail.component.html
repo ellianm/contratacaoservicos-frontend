@@ -1,0 +1,14 @@
+<div class="po-row">
+  <po-widget class="po-sm-12 po-md-8 po-lg-6 po-row" p-height="350" p-title="Detalhes do Contratante" p-primary-label="Chamada"
+    p-secondary-label="Enviar e-mail" (p-primary-action)="callContact()" (p-secondary-action)="sendContact()">
+    <po-avatar class="po-md-4" p-size="lg" [p-src]="element.avatarUrl" (p-click)="modal.open()"> </po-avatar>
+    <div class="po-md-8">
+      <p><strong>Nome:</strong> {{ element.name }}</p>
+      <p><strong>Telefone:</strong> {{ formatPhoneNumber(element.telefone) }}</p>
+      <p><strong>E-mail:</strong> {{ element.email }}</p>
+    </div>
+  </po-widget>
+</div>
+<po-modal #modal p-title="Profile Image">
+  <img [src]="element.avatarUrl" class="sample-center-image" />
+</po-modal>

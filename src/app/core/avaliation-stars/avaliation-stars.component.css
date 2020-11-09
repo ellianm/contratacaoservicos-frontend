@@ -1,0 +1,22 @@
+.stars input[type=radio] {
+  display: none;
+}
+.stars label a.fa:before {
+  content:'\f005';
+}
+.stars input[type=radio]:checked ~ label a.fa:before {
+  color: #CCC;
+}
+
+.stars-unmarked {
+  color: #CCC;
+}
+
+.stars-marked {
+  content:'\f005';
+  color: #FC0;
+}
+
+a {
+  text-decoration:none;
+}

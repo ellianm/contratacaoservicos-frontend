@@ -1,0 +1,22 @@
+<h2 mat-dialog-title>Últimas avaliações do prestador</h2>
+<div mat-dialog-content *ngIf="dataSource.data.length else notFound" class="table-avaliations mat-elevation-z8">
+  <table mat-table [dataSource]="dataSource">
+    <ng-container matColumnDef="observation">
+      <th mat-header-cell *matHeaderCellDef> Observações </th>
+      <td mat-cell *matCellDef="let element">
+        {{element.observation}}
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="avaliation">
+      <th mat-header-cell *matHeaderCellDef> Avaliação </th>
+      <td mat-cell *matCellDef="let element">
+        <app-avaliation-stars origin="historyJob" [element]="element"></app-avaliation-stars>
+      </td>
+    </ng-container>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+</div>
+<ng-template #notFound>
+  <mat-card [style.backgroundColor]="'orange'">Este prestador não possui avaliações</mat-card>
+</ng-template>

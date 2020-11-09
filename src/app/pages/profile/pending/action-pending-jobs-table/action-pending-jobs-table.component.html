@@ -1,0 +1,61 @@
+<div [hidden]="!dataSource.data.length" class="table-pending-jobs mat-elevation-z8 mt-2">
+  <mat-card>Contratos recentes não vistos!</mat-card>
+  <table mat-table [dataSource]="dataSource">
+    <ng-container matColumnDef="clientName">
+      <th mat-header-cell *matHeaderCellDef> Nome Contratante </th>
+      <td mat-cell *matCellDef="let element"> {{element.client?.name}} </td>
+    </ng-container>
+    <ng-container matColumnDef="dtSolicitation">
+      <th mat-header-cell *matHeaderCellDef> Dt. Solicitação </th>
+      <td mat-cell *matCellDef="let element"> {{element.dtSolicitation | date:'dd/MM/yyyy HH:mm:SS'}} </td>
+    </ng-container>
+    <ng-container matColumnDef="detail">
+      <th mat-header-cell *matHeaderCellDef> Detalhes </th>
+      <td mat-cell *matCellDef="let element">
+        <a mat-icon-button (click)="showDetail(element)">
+          <mat-icon class="mat-18">description</mat-icon>
+        </a>
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="observation">
+      <th mat-header-cell *matHeaderCellDef> Observações </th>
+      <td mat-cell *matCellDef="let element">
+        <a mat-icon-button (click)="showObservation(element)">
+          <mat-icon class="mat-18">plagiarism</mat-icon>
+        </a>
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="value">
+      <th mat-header-cell *matHeaderCellDef> Valor </th>
+      <td mat-cell *matCellDef="let element">
+        <span *ngIf="element.value">{{element.value | currency:'R$' }}</span>
+        <span *ngIf="!element.value">Não possui valor dinâmicamente calculado</span>
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="action">
+      <th mat-header-cell *matHeaderCellDef> Ação </th>
+      <td mat-cell *matCellDef="let element">
+        <mat-button-toggle-group name="fontStyle" aria-label="Font Style">
+          <mat-button-toggle mat-icon-button mat-button-toggle (click)="setAction(element, true)">
+            <mat-icon>done</mat-icon>
+          </mat-button-toggle>
+          <mat-button-toggle mat-icon-button (click)="setAction(element, false)">
+            <mat-icon>cancel</mat-icon>
+          </mat-button-toggle>
+        </mat-button-toggle-group>
+      </td>
+    </ng-container>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+  <mat-paginator #paginatorContractedJob pageSize=5 [length]="dataSource.data.length" showFirstLastButtons>
+  </mat-paginator>
+  <button class="mr-1" (click)="save()" color="primary" mat-button mat-stroked-button>
+    <mat-icon class="mat-18">save</mat-icon>
+    <span>Salvar</span>
+  </button>
+  <button (click)="loadData()" color="primary" mat-button mat-stroked-button>
+    <mat-icon class="mat-18">autorenew</mat-icon>
+    <span>Atualizar</span>
+  </button>
+</div>

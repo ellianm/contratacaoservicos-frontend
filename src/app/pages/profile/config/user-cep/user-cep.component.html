@@ -1,0 +1,11 @@
+<mat-form-field class="example-chip-list">
+  <mat-chip-list #chipList aria-label="Cep selection">
+    <mat-chip [selectable]="true" *ngFor="let cep of cepList" (removed)="removeCep(cep)">
+      {{cep.cityName}}
+      <mat-icon matChipRemove>cancel</mat-icon>
+    </mat-chip>
+    <input placeholder="Informe somente CEP's" [matChipInputFor]="chipList"
+      [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+      (matChipInputTokenEnd)="add($event)">
+  </mat-chip-list>
+</mat-form-field>

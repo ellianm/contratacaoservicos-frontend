@@ -1,0 +1,51 @@
+<div [hidden]="!dataSource.data.length" class="table-pending-jobs mat-elevation-z8 mt-2">
+  <mat-card>Histórico de contratos!</mat-card>
+  <table mat-table [dataSource]="dataSource">
+    <ng-container matColumnDef="clientName">
+      <th mat-header-cell *matHeaderCellDef> Nome Contratante </th>
+      <td mat-cell *matCellDef="let element"> {{element.client?.name}} </td>
+    </ng-container>
+    <ng-container matColumnDef="dtSolicitation">
+      <th mat-header-cell *matHeaderCellDef> Dt. Solicitação </th>
+      <td mat-cell *matCellDef="let element"> {{element.dtSolicitation | date:'dd/MM/yyyy HH:mm:SS'}} </td>
+    </ng-container>
+    <ng-container matColumnDef="observation">
+      <th mat-header-cell *matHeaderCellDef> Observações </th>
+      <td mat-cell *matCellDef="let element"> {{element.observation}} </td>
+    </ng-container>
+    <ng-container matColumnDef="value">
+      <th mat-header-cell *matHeaderCellDef> Valor </th>
+      <td mat-cell *matCellDef="let element"> 
+        <span *ngIf="element.value">{{element.value | currency:'R$' }}</span>
+        <span *ngIf="!element.value">Não possui valor dinâmicamente calculado</span>
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="action">
+      <th mat-header-cell *matHeaderCellDef> Ação </th>
+      <td mat-cell *matCellDef="let element">
+        <span style="color: #3ed700;" *ngIf="element.action else recusada">Aceito</span>
+        <ng-template #recusada>
+          <span style="color: #fd1900;">Recusado</span>
+        </ng-template>
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="avaliation">
+      <th mat-header-cell *matHeaderCellDef> Avaliação Recebida </th>
+      <td mat-cell *matCellDef="let element">
+        <app-avaliation-stars *ngIf="element.avaliation > 0 else notAvaliated" origin="historyAction" [element]="element">
+        </app-avaliation-stars>
+        <ng-template #notAvaliated>
+          <span>Não Avaliado</span>
+        </ng-template>
+      </td>
+    </ng-container>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+  <mat-paginator #paginatorContractedJobHistory pageSize=5 [length]="dataSource.data.length" showFirstLastButtons>
+  </mat-paginator>
+  <button (click)="loadData()" color="primary" mat-button mat-stroked-button>
+    <mat-icon class="mat-18">autorenew</mat-icon>
+    <span>Atualizar</span>
+  </button>
+</div>

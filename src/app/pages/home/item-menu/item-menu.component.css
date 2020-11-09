@@ -1,0 +1,19 @@
+.item-menu {
+  margin: 0px;
+  padding-top: 0px;
+  width: 100px;
+  height: 120px;
+  text-decoration:none;
+  border-radius: 16px;
+  background-color : white; 
+}
+.item-menu:hover{
+  background-color: rgb(169, 231, 255);
+}
+.item-menu p {
+    text-align: center;
+}
+.item-menu-link {
+  text-decoration: none;
+  color: black;
+}

@@ -1,0 +1,110 @@
+<mat-card>
+  <mat-card-header>
+    <mat-card-subtitle>Serviço Doméstico</mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content>
+    <form [formGroup]="form">
+    <mat-card>
+      <h5>Grande</h5>
+      <div class="p-grid p-fluid">
+        <div class="p-col-12 p-md-6">
+          <mat-form-field appearance="outline">
+            <mat-label>A partir de</mat-label>
+            <input matInput type="number" formControlName="largeSize" class="example-right-align">
+            <span matSuffix>m²</span>
+            <mat-error *ngIf="form.get('largeSize').errors?.required">Campo obrigatório</mat-error>
+          </mat-form-field>
+        </div>
+        <div class="p-col-12 p-md-6">
+          <mat-form-field appearance="outline">
+            <mat-label>Valor diário</mat-label>
+            <input matInput type="number" formControlName="largeValue" class="example-right-align">
+            <span matPrefix>R$&nbsp;</span>
+            <span matSuffix>.00</span>
+            <mat-error *ngIf="form.get('largeValue').errors?.required">Campo obrigatório</mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+    </mat-card>
+    <mat-card class="mt-1">
+      <h5>Médio</h5>
+      <div class="p-grid p-fluid">
+        <div class="p-col-12 p-md-6">
+          <mat-form-field appearance="outline">
+            <mat-label>A partir de</mat-label>
+            <input matInput type="number" formControlName="mediumSize" class="example-right-align">
+            <span matSuffix>m²</span>
+            <mat-error *ngIf="form.get('mediumSize').errors?.required">Campo obrigatório</mat-error>
+          </mat-form-field>
+        </div>
+        <div class="p-col-12 p-md-6">
+          <mat-form-field appearance="outline">
+            <mat-label>Valor diário</mat-label>
+            <input matInput type="number" formControlName="mediumValue" class="example-right-align">
+            <span matPrefix>R$&nbsp;</span>
+            <span matSuffix>.00</span>
+            <mat-error *ngIf="form.get('mediumValue').errors?.required">Campo obrigatório</mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+    </mat-card>
+    <mat-card class="mt-1">
+      <h5>Pequeno</h5>
+      <div class="p-grid p-fluid">
+        <div class="p-col-12 p-md-6">
+          <mat-form-field appearance="outline">
+            <mat-label>A partir de</mat-label>
+            <input matInput type="number" formControlName="smallSize" class="example-right-align">
+            <span matSuffix>m²</span>
+            <mat-error *ngIf="form.get('smallSize').errors?.required">Campo obrigatório</mat-error>
+          </mat-form-field>
+        </div>
+        <div class="p-col-12 p-md-6">
+          <mat-form-field appearance="outline">
+            <mat-label>Valor diário</mat-label>
+            <input matInput type="number" formControlName="smallValue" class="example-right-align">
+            <span matPrefix>R$&nbsp;</span>
+            <span matSuffix>.00</span>
+            <mat-error *ngIf="form.get('smallValue').errors?.required">Campo obrigatório</mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+    </mat-card>
+    <mat-card class="mt-1">
+      <h5>Múltiplos</h5>
+      <div class="p-grid p-fluid">
+        <div class="p-col-12 p-md-4">
+          <mat-form-field appearance="outline">
+            <mat-label>Leve</mat-label>
+            <input matInput type="number" formControlName="cleaningLight" class="example-right-align">
+            <span matSuffix>x</span>
+            <mat-error *ngIf="form.get('cleaningLight').errors?.required">Campo obrigatório</mat-error>
+          </mat-form-field>
+        </div>
+        <div class="p-col-12 p-md-4">
+          <mat-form-field appearance="outline">
+            <mat-label>Normal</mat-label>
+            <input matInput type="number" formControlName="cleaningNormal" class="example-right-align">
+            <span matSuffix>x</span>
+            <mat-error *ngIf="form.get('cleaningNormal').errors?.required">Campo obrigatório</mat-error>
+          </mat-form-field>
+        </div>
+        <div class="p-col-12 p-md-4">
+          <mat-form-field appearance="outline">
+            <mat-label>Pesado</mat-label>
+            <input matInput type="number" formControlName="cleaningHeavy" class="example-right-align">
+            <span matSuffix>x</span>
+            <mat-error *ngIf="form.get('cleaningHeavy').errors?.required">Campo obrigatório</mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+    </mat-card>
+    </form>
+  </mat-card-content>
+  <mat-card-actions align="start">
+    <button [disabled]="form.invalid" mat-button mat-stroked-button (click)="save()" color="primary">
+      <mat-icon class="mat-18">save</mat-icon>
+      Salvar
+    </button>
+  </mat-card-actions>
+</mat-card>

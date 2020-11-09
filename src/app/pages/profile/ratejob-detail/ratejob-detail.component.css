@@ -1,0 +1,11 @@
+* {
+  width: 100%;
+}
+
+.sample-center-image {
+  display: block;
+  margin: 0 auto;
+}
+.av {
+  justify-self: center;  
+}

@@ -1,0 +1,18 @@
+<div class="profile">
+  <div class="profile-userpic">
+    <po-avatar style="display: flex; justify-content: center" p-size="xl" [p-src]="getSantizeUrl(url)"></po-avatar>
+  </div>
+  <div class="profile-usertitle">
+    <form>
+      <input accept="image/*" style="display: none;" id="input-file-id" [multiple]="false" type="file"
+        (change)="uploadPhoto($event.target.files[0])" />
+      <label matTooltip="Realizar o upload de foto de perfil" matTooltipPosition="right" for="input-file-id"
+        class="md-button md-raised md-primary">
+        <mat-icon style="cursor: pointer;" color="primary" class="mat-18">insert_photo</mat-icon>
+      </label>
+    </form>
+    <div class="profile-usertitle-name">
+      {{userName}}
+    </div>
+  </div>
+</div>

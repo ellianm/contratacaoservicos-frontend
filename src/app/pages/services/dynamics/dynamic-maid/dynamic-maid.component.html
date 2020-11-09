@@ -1,0 +1,64 @@
+<form>
+  <mat-card>
+    <mat-card-header>
+      <mat-card-subtitle>Serviço Doméstico</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <mat-card>
+        <div class="p-grid p-fluid">
+          <div class="p-col-12 p-md-6">
+            <button mat-button class="mb-2" (click)="addRoom()">
+              <mat-icon>add</mat-icon>
+              <mat-label>Adicionar cômodo</mat-label>
+            </button>
+          </div>
+          <div class="p-col-12 p-md-6">
+            <button mat-button class="mb-2" (click)="removeRoom()">
+              <mat-icon>remove</mat-icon>
+              <mat-label>Remover último cômodo</mat-label>
+            </button>
+          </div>
+        </div>
+        <div *ngFor="let room of rooms">
+          <div class="p-grid p-fluid">
+            <div class="p-col-12 p-md-6">
+              <mat-form-field appearance="outline">
+                <mat-label>Tamanho do quarto N° {{room.seqRoom}}</mat-label>
+                <input name="length" matInput type="number" [(ngModel)]="room.length" class="example-right-align">
+                <span matSuffix>m²</span>
+              </mat-form-field>
+            </div>
+            <div class="p-col-12 p-md-6">
+              <mat-form-field appearance="outline">
+                <mat-label>Tipo da limpeza</mat-label>
+                <mat-select required name="cleaningType" [(ngModel)]="room.cleaningType">
+                  <mat-option value="0">Leve</mat-option>
+                  <mat-option value="1">Normal</mat-option>
+                  <mat-option value="2">Pesado</mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+          </div>
+        </div>
+        <mat-form-field appearance="outline">
+          <mat-label>Dias Por Semana</mat-label>
+          <mat-select required name="days" [(ngModel)]="days">
+            <mat-option value="1">1</mat-option>
+            <mat-option value="2">2</mat-option>
+            <mat-option value="3">3</mat-option>
+            <mat-option value="4">4</mat-option>
+            <mat-option value="5">5</mat-option>
+            <mat-option value="6">6</mat-option>
+            <mat-option value="7">7</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </mat-card>
+    </mat-card-content>
+    <mat-card-actions align="start">
+      <button mat-button mat-stroked-button color="primary" (click)="send(true)">
+        <mat-icon class="mat-18">save</mat-icon>
+        Confirmar
+      </button>
+    </mat-card-actions>
+  </mat-card>
+</form>

@@ -1,0 +1,91 @@
+<app-start-bar></app-start-bar>
+<div class="row profile">
+  <div class="col-md-2">
+    <div class="mat-elevation-z8 profile-sidebar">
+      <app-avatar [userName]="user.name" [photoUrl]="user.avatarUrl" [userId]="user.id"></app-avatar>
+      <div class="profile-usermenu">
+        <mat-selection-list color="warn" #menu [multiple]="false">
+          <mat-list-option #home [selected]="true" [value]="userMenus[0]">
+            <div class="form-inline">
+              <mat-icon class="mr-1" aria-hidden="false" aria-label="home icon">home</mat-icon>
+              {{userMenus[0]}}
+            </div>
+          </mat-list-option>
+          <mat-list-option [value]="userMenus[1]">
+            <div class="form-inline">
+              <mat-icon class="mr-1" aria-hidden="false" aria-label="settings icon">settings</mat-icon>
+              {{userMenus[1]}}
+            </div>
+          </mat-list-option>
+          <mat-list-option [value]="userMenus[2]">
+            <div class="form-inline">
+              <mat-icon class="mr-1" aria-hidden="false" aria-label="done icon">alarm</mat-icon>
+              {{userMenus[2]}}
+            </div>
+          </mat-list-option>
+        </mat-selection-list>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-9">
+    <div class="profile-content">
+      <div id="home" [hidden]="menu.selectedOptions.selected[0]?.value != userMenus[0]">
+        <mat-card [style.backgroundColor]="'orange'"
+          *ngIf="!dataSourceRateJob.data.length && !dataSourceContractedJobs.data.length && !dataSourceProgress.data.length && 
+                 !dataSourceProgressClient.data.length"
+          color="warn">
+          <span>Não existem novas pendências.</span>
+        </mat-card>
+        <app-rate-pending-jobs-table [dataSource]="dataSourceRateJob" [dataSourceHistory]="dataSourceRateJobHistory"
+          [userId]="configureForm.get('id')?.value">
+        </app-rate-pending-jobs-table>
+        <app-action-pending-jobs-table [dataSource]="dataSourceContractedJobs"
+          [dataSourceHistory]="dataSourceContractedJobsHistory" [dataSourceInProgress]="dataSourceProgress"
+          [userId]="configureForm.get('id')?.value">
+        </app-action-pending-jobs-table>
+        <app-in-progress-jobs-table [dataSource]="dataSourceProgress"
+          [dataSourceHistory]="dataSourceContractedJobsHistory" [userId]="configureForm.get('id')?.value">
+        </app-in-progress-jobs-table>
+        <app-in-progress-client-jobs-table [dataSource]="dataSourceProgressClient" [userId]="configureForm.get('id')?.value">
+        </app-in-progress-client-jobs-table>
+      </div>
+      <div [hidden]="menu.selectedOptions.selected[0]?.value != userMenus[1]">
+        <div class="configuracoes mat-elevation-z8 mt-2">
+          <mat-accordion>
+            <mat-expansion-panel hideToggle>
+              <mat-expansion-panel-header>
+                <mat-panel-title> Alterar dados cadastrais </mat-panel-title>
+              </mat-expansion-panel-header>
+              <app-user-data-form [form]="configureForm"></app-user-data-form>
+            </mat-expansion-panel>
+            <mat-expansion-panel hideToggle>
+              <mat-expansion-panel-header>
+                <mat-panel-title> Configurar cidades de atuação </mat-panel-title>
+              </mat-expansion-panel-header>
+              <app-user-cep [user]="user"></app-user-cep>
+            </mat-expansion-panel>
+            <mat-expansion-panel hideToggle>
+              <mat-expansion-panel-header>
+                <mat-panel-title> Configurar atuações </mat-panel-title>
+              </mat-expansion-panel-header>
+              <app-user-jobs [user]="user" [jobList]="jobList"></app-user-jobs>
+            </mat-expansion-panel>
+            <mat-expansion-panel hideToggle>
+              <mat-expansion-panel-header>
+                <mat-panel-title> Configurar valores </mat-panel-title>
+              </mat-expansion-panel-header>
+              <app-dynamic-config-resolver *ngFor="let userJob of jobList" [userJob]="userJob">
+              </app-dynamic-config-resolver>
+            </mat-expansion-panel>
+          </mat-accordion>
+        </div>
+      </div>
+      <div [hidden]="menu.selectedOptions.selected[0]?.value != userMenus[2]">
+        <app-history-rate-contract-table [dataSource]="dataSourceRateJobHistory"
+          [userId]="configureForm.get('id')?.value"></app-history-rate-contract-table>
+        <app-history-action-jobs-table [dataSource]="dataSourceContractedJobsHistory"
+          [userId]="configureForm.get('id')?.value"></app-history-action-jobs-table>
+      </div>
+    </div>
+  </div>
+</div>

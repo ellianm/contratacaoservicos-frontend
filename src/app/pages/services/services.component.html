@@ -1,0 +1,21 @@
+<app-start-bar></app-start-bar>
+<div class="services wrapper">
+  <div class="services inner">
+    <img src="assets/image-1.png" alt="" class="services image-1">
+    <form action="">
+      <h3>Solicitação de Serviços</h3>
+      <div *ngIf="!validService else dynamicComponent" class="">
+        <div class="form-holder">
+          <span class="lnr lnr-briefcase"></span>
+          <input [(ngModel)]="name" name="name" type="text" class="form-control" placeholder="Nome do Serviço">
+        </div>
+        <button (click)="servicesChange()" mat-raised-button color="primary">
+          <span>Solicitar</span>
+        </button>
+      </div>
+      <ng-template #dynamicComponent>
+      </ng-template>
+    </form>
+    <img src="assets/image-2.png" alt="" class="image-2">
+  </div>
+</div>

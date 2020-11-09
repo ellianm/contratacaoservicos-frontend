@@ -1,0 +1,49 @@
+.start-bar{
+    padding-top: 10px;
+}
+.buttons {
+    margin: 5px;
+}
+.buttons input {
+  margin-left: 15px;
+  width: 400px;
+}
+.logo {
+  width: 70px;
+  height: 60px;
+  margin-top: 5px;
+  margin-left: 20px;
+}
+.start-bar {
+  background-color: white;
+}
+
+.loading-container {
+  display: flex;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0,0,0,0.7);
+  z-index: 5;
+  justify-content: center;
+}
+
+.site-container {
+  font-size: 14px;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  height: 100vh;
+  background: #f1f1f1;
+  overflow: hidden;
+
+  .site-header {
+    height: 64px;
+  }
+
+  .site-content {
+    height: calc(100vh - 65px);
+    padding: 0 15px;
+    overflow: auto;
+  }
+}

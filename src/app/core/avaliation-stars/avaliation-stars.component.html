@@ -1,0 +1,7 @@
+<div class="stars form-inline">
+  <div *ngFor="let star of starList">
+    <label for="cm_star-{{star}}-{{element.id}}"><a name='{{origin}} {{element.id}}'
+        class="fa star-unmarked"></a></label>
+    <input type="radio" id="cm_star-{{star}}-{{element.id}}" name="fb" (click)="setAvaliation(star, false)" />
+  </div>
+</div>

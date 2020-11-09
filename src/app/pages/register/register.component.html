@@ -1,0 +1,162 @@
+<app-start-bar></app-start-bar>
+<div class="wrapper">
+  <div class="inner mt-2">
+    <img src="assets/image-1.png" alt="" class="image-1">
+    <form [formGroup]="form" (submit)="signup()">
+      <h3>Registrar-se</h3>
+      <div class="form-row">
+        <div class="col">
+          <div class="form-holder">
+            <span class="lnr lnr-user"></span>
+            <input #userInput formControlName="userName" name="userName" type="text" class="form-control"
+              placeholder="Usuário">
+            <mat-error *ngIf="form.get('userName').errors?.required">Nome de usuário é
+              obrigatório.<br></mat-error>
+            <mat-error *ngIf="form.get('userName').errors?.userNameTaken">Nome de usuário já
+              utilizado.<br></mat-error>
+            <mat-error *ngIf="form.get('userName').errors?.maxlength">Nome de usuário não pode ter
+              mais que 30 caracteres<br></mat-error>
+            <mat-error *ngIf="form.get('userName').errors?.minlength">Nome de usuário não pode ter
+              menos que 6 caracteres</mat-error>
+          </div>
+          <div class="form-holder">
+            <span class="lnr lnr-user"></span>
+            <input formControlName="name" name="fullName" type="text" class="form-control" placeholder="Nome Completo">
+            <mat-error *ngIf="form.get('name').errors?.required">Nome completo é
+              obrigatório.<br></mat-error>
+          </div>
+          <div class="form-holder">
+            <span class="lnr lnr-phone-handset"></span>
+            <input formControlName="telefone" name="telefone" type="text" class="form-control" mask="(00) 00000-0000"
+              placeholder="Telefone">
+            <mat-error *ngIf="form.get('telefone').errors?.required">Telefone é
+              obrigatório.<br></mat-error>
+          </div>
+          <div class="form-holder">
+            <span class="lnr lnr-envelope"></span>
+            <input formControlName="email" name="email" type="text" class="form-control" placeholder="Email">
+            <mat-error *ngIf="form.get('email').errors?.required">Email é
+              obrigatório.<br></mat-error>
+            <mat-error *ngIf="form.get('email').errors?.email">Email não é válido.<br>
+            </mat-error>
+            <mat-error *ngIf="form.get('email').errors?.emailTaken">Email já
+              utilizado.<br></mat-error>
+          </div>
+          <div class="form-holder">
+            <span class="lnr lnr-magnifier"></span>
+            <input formControlName="cep" name="cep" type="text" mask="00000-000" class="form-control" placeholder="CEP"
+              (blur)="pesquisaCep()">
+            <mat-error *ngIf="form.get('cep').errors?.required">CEP é
+              obrigatório.<br></mat-error>
+          </div>
+          <div class="form-holder">
+            <span class="lnr lnr-earth"></span>
+            <input formControlName="uf" name="uf" type="text" id="uf" class="form-control" placeholder="UF">
+            <mat-error *ngIf="form.get('uf').errors?.required">UF é
+              obrigatório.<br></mat-error>
+          </div>
+          <div class="form-holder">
+            <span class="lnr lnr-apartment"></span>
+            <input formControlName="cidade" name="cidade" type="text" id="cidade" class="form-control"
+              placeholder="Cidade">
+            <mat-error *ngIf="form.get('cidade').errors?.required">Cidade é
+              obrigatório.<br></mat-error>
+          </div>
+          <div class="form-holder">
+            <span class="lnr lnr-home"></span>
+            <input formControlName="rua" name="rua" type="text" id="rua" class="form-control" placeholder="Rua">
+            <mat-error *ngIf="form.get('rua').errors?.required">Rua é
+              obrigatório.<br></mat-error>
+          </div>
+          <div class="form-holder">
+            <span class="lnr lnr-home"></span>
+            <input formControlName="numero" name="numero" type="text" id="numero" class="form-control"
+              placeholder="Número">
+            <mat-error *ngIf="form.get('numero').errors?.required">Número é
+              obrigatório.<br></mat-error>
+          </div>
+        </div>
+        <div class="col">
+          <div class="form-holder">
+            <span class="lnr lnr-license"></span>
+            <input formControlName="cnpjf" name="cnpjf" type="text" [mask]="getMaskCnpjf()" class="form-control"
+              placeholder="CPF/CNPJ">
+            <mat-error *ngIf="form.get('cnpjf').errors?.required">CPF/CNPJ é
+              obrigatório.<br></mat-error>
+            <mat-error *ngIf="form.get('cnpjf').errors?.cpfNotValid">CPF/CNPJ não é
+              válido.<br></mat-error>
+          </div>
+          <div class="form-holder">
+            <span class="lnr lnr-license"></span>
+            <input formControlName="rg" name="rg" type="text" mask="00.000.000-0" class="form-control" placeholder="RG">
+          </div>
+          <div class="form-holder">
+            <span class="lnr lnr-users"></span>
+            <mat-select class="mat form-control" formControlName="sexo">
+              <mat-option *ngFor="let sexoOption of sexoOptions" [value]="sexoOption">
+                {{sexoOption}}
+              </mat-option>
+            </mat-select>
+            <mat-error *ngIf="form.get('sexo').errors?.required">Sexo é obrigatório.<br>
+            </mat-error>
+          </div>
+          <div class="form-holder">
+            <span style="margin: 0px">
+              <mat-datepicker-toggle matSuffix [for]="picker">
+                <mat-icon style="font-size: 15px;" matDatepickerToggleIcon>date_range</mat-icon>
+              </mat-datepicker-toggle>
+              <mat-datepicker #picker></mat-datepicker>
+            </span>
+            <input [matDatepicker]="picker" formControlName="dtNascimento" name="dtNascimento" type="text"
+              class="form-control" placeholder="Data de Nascimento">
+            <mat-error *ngIf="form.get('dtNascimento').errors?.required">Data de Nascimento é
+              obrigatório.<br></mat-error>
+          </div>
+          <div class="form-holder">
+            <span class="lnr lnr-briefcase"></span>
+            <input formControlName="funcao" name="funcao" type="text" class="form-control" placeholder="Função">
+            <mat-error *ngIf="form.get('funcao').errors?.required">Função é obrigatória.<br>
+            </mat-error>
+          </div>
+          <div class="form-holder">
+            <span class="lnr lnr-home"></span>
+            <input formControlName="bairro" name="bairro" type="text" id="bairro" class="form-control"
+              placeholder="Bairro">
+            <mat-error *ngIf="form.get('bairro').errors?.required">Bairro é obrigatório.<br>
+            </mat-error>
+          </div>
+          <div class="form-holder">
+            <span class="lnr lnr-lock"></span>
+            <input formControlName="password" name="senha" type="password" class="form-control" placeholder="Senha">
+            <mat-error *ngIf="form.get('password').errors?.required">Senha é
+              obrigatório.<br></mat-error>
+            <mat-error *ngIf="form.get('password').errors?.minlength">Senha deve ter pelo menos 8
+              caracteres.<br></mat-error>
+          </div>
+          <div class="form-holder">
+            <span class="lnr lnr-lock"></span>
+            <input formControlName="confirmarSenha" name="confirmarSenha" type="password" class="form-control"
+              placeholder="Confimar senha">
+            <mat-error *ngIf="form.get('confirmarSenha').errors?.required">Confirmar a senha é
+              obrigatório.<br></mat-error>
+            <mat-error
+              *ngIf="(form.get('confirmarSenha').value && form.get('password').value !== form.get('confirmarSenha').value)">
+              Senhas não coincidem</mat-error>
+          </div>
+          <div class="form-holder">
+            <mat-checkbox style="font-family: 'Muli-SemiBold'"
+              matTooltip="Marque esta opção caso seja um prestador de serviços!" matTooltipPosition="right"
+              formControlName="isPrestador" color="primary">Prestador de Serviços</mat-checkbox>
+          </div>
+        </div>
+      </div>
+      <mat-checkbox formControlName="aceitouTermos" color="primary">
+        Concordo com os <a class="a" (click)="openDialog()">Termos de licença e uso</a>
+      </mat-checkbox>
+      <button mat-raised-button color="primary" [disabled]="form.invalid || !form.get('aceitouTermos').value">
+        <span>Confirmar</span>
+      </button>
+    </form>
+    <img src="assets/image-2.png" alt="" class="image-2">
+  </div>
+</div>
