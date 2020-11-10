@@ -29,7 +29,7 @@
       <th mat-header-cell *matHeaderCellDef> Valor </th>
       <td mat-cell *matCellDef="let element">
         <span *ngIf="element.value">{{element.value | currency:'R$' }}</span>
-        <span *ngIf="!element.value">Não possui valor dinâmicamente calculado</span>
+        <span *ngIf="!element.value">Sem cálculo dinâmico</span>
       </td>
     </ng-container>
     <ng-container matColumnDef="action">

@@ -18,7 +18,7 @@ export class RatePendingJobsTableComponent implements OnInit, AfterViewInit {
 
   @Input() dataSource: MatTableDataSource<IRateJob>;
   @Input() dataSourceHistory: MatTableDataSource<IRateJob>;
-  displayedColumns: string[] = ['provider', 'serviceName', 'dtConclusion', 'value', 'avaliation',  'observation','detail'];
+  displayedColumns: string[] = ['provider', 'serviceName', 'dtConclusion', 'value', 'avaliation', 'avaliationObs',  'observation','detail'];
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @Input() userId: string;
 
@@ -67,6 +67,13 @@ export class RatePendingJobsTableComponent implements OnInit, AfterViewInit {
     dialogText.componentInstance.propertyName = 'observation';
     dialogText.componentInstance.title = 'Observação';
     dialogText.componentInstance.editable = false;
+  }
+  showAvaliationObs(element: IServiceContract) {
+    const dialogText = this.dialog.open(TextDialogComponent);
+    dialogText.componentInstance.element = element;
+    dialogText.componentInstance.propertyName = 'avaliationObs';
+    dialogText.componentInstance.title = 'Observação Avaliação';
+    dialogText.componentInstance.editable = true;
   }
 
 

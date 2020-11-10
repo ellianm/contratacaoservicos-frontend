@@ -8,6 +8,7 @@ export interface IServiceContract {
    dtSolicitation: string;
    observation: string;
    avaliation: number;
+   avaliationObs: string;
    action: boolean;
    provider: IProvider;
    client: IClient;

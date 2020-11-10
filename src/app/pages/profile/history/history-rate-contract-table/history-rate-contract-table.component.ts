@@ -6,6 +6,8 @@ import { MatDialog } from '@angular/material/dialog';
 import { IRateJob } from '../../../../core/interfaces/iRateJob';
 import { ProfileService } from './../../profile.service';
 import { RatejobDetailComponent } from '../../ratejob-detail/ratejob-detail.component';
+import { IServiceContract } from 'src/app/core/interfaces/iServiceContract';
+import { TextDialogComponent } from 'src/app/core/text-dialog/text-dialog.component';
 
 @Component({
   selector: 'app-history-rate-contract-table',
@@ -15,7 +17,8 @@ import { RatejobDetailComponent } from '../../ratejob-detail/ratejob-detail.comp
 export class HistoryRateContractTableComponent implements OnInit, AfterViewInit {
   @Input() dataSource: MatTableDataSource<IRateJob>;
   @Input() userId: string;
-  displayedColumns: string[] = ['provider', 'serviceName', 'dtConclusion', 'value', 'avaliation', 'detail'];
+  displayedColumns: string[] = ['provider', 'serviceName', 'dtConclusion', 'value',
+                                'avaliation','avaliationObs', 'observation', 'detail'];
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
   constructor(
@@ -38,10 +41,26 @@ export class HistoryRateContractTableComponent implements OnInit, AfterViewInit 
         rateJobsHistory => this.dataSource.data = rateJobsHistory
       );
   }
+  
   showDetail(rateJob: IRateJob) {
     const dialogDetail = this.dialog.open(RatejobDetailComponent);
     dialogDetail.componentInstance.element = rateJob.provider;
   }
+  
+  showObservation(element: IServiceContract) {
+    const dialogText = this.dialog.open(TextDialogComponent);
+    dialogText.componentInstance.element = element;
+    dialogText.componentInstance.propertyName = 'observation';
+    dialogText.componentInstance.title = 'Observação';
+    dialogText.componentInstance.editable = false;
+  }
 
+  showAvaliationObs(element: IServiceContract) {
+    const dialogText = this.dialog.open(TextDialogComponent);
+    dialogText.componentInstance.element = element;
+    dialogText.componentInstance.propertyName = 'avaliationObs';
+    dialogText.componentInstance.title = 'Observação Avaliação';
+    dialogText.componentInstance.editable = false;
+  }
 
 }

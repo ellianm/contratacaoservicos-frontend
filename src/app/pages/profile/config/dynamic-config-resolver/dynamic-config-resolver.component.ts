@@ -8,6 +8,7 @@ import { ProfileService } from '../../profile.service';
   templateUrl: './dynamic-config-resolver.component.html',
   styleUrls: ['./dynamic-config-resolver.component.css']
 })
+// código oculto
 export class DynamicConfigResolverComponent implements OnInit {
 
   hasDynamicConfig: boolean;

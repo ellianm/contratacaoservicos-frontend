@@ -15,10 +15,11 @@ export class ServiceContract implements IServiceContract {
     provider: IProvider;
     client: IClient;
     value: number;
-
+    avaliationObs: string;
 
     constructor() {
         this.client = new Client();
         this.provider = new Provider();
     }
+    
 }

@@ -10,14 +10,18 @@
       <td mat-cell *matCellDef="let element"> {{element.dtSolicitation | date:'dd/MM/yyyy HH:mm:SS'}} </td>
     </ng-container>
     <ng-container matColumnDef="observation">
-      <th mat-header-cell *matHeaderCellDef> Observações </th>
-      <td mat-cell *matCellDef="let element"> {{element.observation}} </td>
+      <th mat-header-cell *matHeaderCellDef> Observação </th>
+      <td mat-cell *matCellDef="let element">
+        <a mat-icon-button (click)="showObservation(element)">
+          <mat-icon class="mat-18">plagiarism</mat-icon>
+        </a>
+      </td>
     </ng-container>
     <ng-container matColumnDef="value">
       <th mat-header-cell *matHeaderCellDef> Valor </th>
-      <td mat-cell *matCellDef="let element"> 
+      <td mat-cell *matCellDef="let element">
         <span *ngIf="element.value">{{element.value | currency:'R$' }}</span>
-        <span *ngIf="!element.value">Não possui valor dinâmicamente calculado</span>
+        <span *ngIf="!element.value">Sem cálculo dinâmico</span>
       </td>
     </ng-container>
     <ng-container matColumnDef="action">
@@ -32,11 +36,20 @@
     <ng-container matColumnDef="avaliation">
       <th mat-header-cell *matHeaderCellDef> Avaliação Recebida </th>
       <td mat-cell *matCellDef="let element">
-        <app-avaliation-stars *ngIf="element.avaliation > 0 else notAvaliated" origin="historyAction" [element]="element">
+        <app-avaliation-stars *ngIf="element.avaliation > 0 else notAvaliated" origin="historyAction"
+          [element]="element">
         </app-avaliation-stars>
         <ng-template #notAvaliated>
           <span>Não Avaliado</span>
         </ng-template>
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="avaliationObs">
+      <th mat-header-cell *matHeaderCellDef> Observação Avaliação </th>
+      <td mat-cell *matCellDef="let element" style="text-align: center;">
+        <a mat-icon-button (click)="showAvaliationObs(element)">
+          <mat-icon class="mat-18">assistant</mat-icon>
+        </a>
       </td>
     </ng-container>
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
