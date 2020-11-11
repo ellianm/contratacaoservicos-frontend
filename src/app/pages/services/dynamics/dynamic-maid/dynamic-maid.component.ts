@@ -16,6 +16,7 @@ export class DynamicMaidComponent implements OnInit, DynamicComponent {
   rooms = [];
   days;
   dataResult = [];
+  serviceName = 'domestica';
 
   constructor(
     private router: Router,
@@ -47,7 +48,7 @@ export class DynamicMaidComponent implements OnInit, DynamicComponent {
         .navigate(
           ['servicesResult',
             {
-              serviceName: 'domestica',
+              serviceName: this.serviceName,
               dynamic: false
             }
           ]);
@@ -71,7 +72,7 @@ export class DynamicMaidComponent implements OnInit, DynamicComponent {
     };
     this.router.navigate(['servicesResult',
       {
-        serviceName: 'domestica',
+        serviceName: this.serviceName,
         dynamic: true,
         data: JSON.stringify(this.dataResult)
       }

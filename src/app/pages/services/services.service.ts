@@ -3,9 +3,7 @@ import { Injectable } from '@angular/core';
 
 import { IServiceTemplate } from '../../core/interfaces/iServiceTemplate';
 import { DynamicMaidComponent } from './dynamics/dynamic-maid/dynamic-maid.component';
-
-
-const API_URL = 'http://localhost:1337';
+import { environment } from 'src/environments/environment';
 
 @Injectable({ providedIn: 'root' })
 export class ServicosService {
@@ -16,7 +14,7 @@ export class ServicosService {
   constructor(private http: HttpClient) { }
 
   getTemplateByService(name: string) {
-    return this.http.post(API_URL + '/servicestemplate/exists/', { name });
+    return this.http.post(environment.API_URL + '/servicestemplate/exists/', { name });
   }
 
 
