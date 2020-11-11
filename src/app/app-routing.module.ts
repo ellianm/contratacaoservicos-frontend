@@ -39,6 +39,7 @@ const routes: Routes = [
   {
     path: 'services/:name',
     component: ServicesComponent,
+    canActivate: [AuthGuard],
     data: {
       title: 'Solicitação de Serviços | FindServices'
     }
@@ -46,6 +47,7 @@ const routes: Routes = [
   {
     path: 'services',
     component: ServicesComponent,
+    canActivate: [AuthGuard],
     data: {
       title: 'Solicitação de Serviços | FindServices'
     }
@@ -53,6 +55,7 @@ const routes: Routes = [
   {
     path: 'servicesResult',
     component: ServicesResultComponent,
+    canActivate: [AuthGuard],
     data: {
       title: 'Resultado da Pesquisa | FindServices'
     }

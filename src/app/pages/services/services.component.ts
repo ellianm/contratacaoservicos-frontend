@@ -29,9 +29,6 @@ export class ServicesComponent implements OnInit {
     private componentFactoryResolver: ComponentFactoryResolver) { }
 
   ngOnInit(): void {
-    if (!this.userService.isLogged()) {
-      this.router.navigate(['login']);
-    }
     if (this.activatedRoute.snapshot.params.name) {
       this.getFormByService(this.activatedRoute.snapshot.params.name);
     }

@@ -38,9 +38,6 @@ export class ServicesResultComponent implements OnInit {
 
   ngOnInit(): void {
     this.serviceContract = new ServiceContract();
-    if (!this.userService.isLogged()) {
-      this.router.navigate(['login']);
-    }
     this.serviceName = this.activatedRoute.snapshot.params.serviceName;
     this.dynamic = this.activatedRoute.snapshot.params.dynamic;
     if (this.dynamic) {
