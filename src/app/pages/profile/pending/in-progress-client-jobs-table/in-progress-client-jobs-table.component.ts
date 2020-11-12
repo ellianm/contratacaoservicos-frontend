@@ -7,6 +7,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { IServiceContract } from 'src/app/core/interfaces/iServiceContract';
 import { TextDialogComponent } from 'src/app/core/text-dialog/text-dialog.component';
+import { DynamicsService } from '../../config/dynamics/dynamics.service';
 
 @Component({
   selector: 'app-in-progress-client-jobs-table',
@@ -21,7 +22,8 @@ export class InProgressClientJobsTableComponent implements OnInit {
   @Input() userId: string;
 
   constructor(private profileService: ProfileService,
-    private dialog: MatDialog) { }
+    private dialog: MatDialog,
+    private dynamicsService: DynamicsService) { }
 
   ngOnInit() {
   }
@@ -52,6 +54,13 @@ export class InProgressClientJobsTableComponent implements OnInit {
 
   saveObservation() {
 
+  }
+  showObject(element: IServiceContract) {
+    if (element.object) {
+      this.profileService
+        .getDynamicConfig(element.serviceName)
+        .subscribe(service => this.dynamicsService.getDynamicObjectDialog(service, element.object));
+    }
   }
 
 }

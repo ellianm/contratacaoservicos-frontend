@@ -24,6 +24,11 @@ export class UserService {
     this.decodeAndNotify();
   }
 
+  setCep(cep: string) {
+    this.userToken.cep = cep;
+    this.tokenService.setCEP(this.userToken.cep);
+  }
+
   getUser() {
     return this.userSubject.asObservable();
   }
@@ -37,6 +42,7 @@ export class UserService {
 
   private decodeAndNotify() {
     this.userToken = new UserToken(this.tokenService.getToken());
+    this.tokenService.setCEP(this.userToken.cep);
     this.userSubject.next(this.userToken);
   }
 

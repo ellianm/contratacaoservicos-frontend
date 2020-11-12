@@ -153,3 +153,9 @@
     .wrapper {
       background: none; } }
   /*# sourceMappingURL=style.css.map */
+
+.unstyled::-webkit-inner-spin-button,
+.unstyled::-webkit-calendar-picker-indicator {
+    display: none;
+    -webkit-appearance: none;
+}

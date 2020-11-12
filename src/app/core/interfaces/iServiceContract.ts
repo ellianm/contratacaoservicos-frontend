@@ -12,4 +12,5 @@ export interface IServiceContract {
    action: boolean;
    provider: IProvider;
    client: IClient;
+   object: any;
 }

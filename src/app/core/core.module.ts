@@ -7,6 +7,8 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
+import { DateAdapter, MAT_DATE_FORMATS } from '@angular/material/core';
+
 
 // Material
 import { MatIconModule } from '@angular/material/icon';
@@ -18,6 +20,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatOptionModule } from '@angular/material/core';
 // PrimeNG
 import { ToastModule } from 'primeng/toast';
 
@@ -30,6 +33,7 @@ import { CpfCnpjValidator } from './validators/cpf-cnpj.validator.service';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { LoadingInterceptor } from './interceptors/loading-interceptor';
 import { TextDialogComponent } from './text-dialog/text-dialog.component';
+import { AppDateAdapter, APP_DATE_FORMATS } from 'src/app/core/format-datepicker';
 
 
 
@@ -59,15 +63,17 @@ import { TextDialogComponent } from './text-dialog/text-dialog.component';
     ToastModule,
     MatProgressSpinnerModule,
     MatToolbarModule,
-    MatFormFieldModule,
     MatInputModule,
+    MatFormFieldModule,
     MatCardModule,
-    MatDialogModule
+    MatDialogModule,
+    MatOptionModule
   ],
   providers: [MessageService, CpfCnpjValidator, {
     provide: HTTP_INTERCEPTORS,
     useClass: LoadingInterceptor,
-    multi: true,
-  }]
+    multi: true
+  }
+  ]
 })
 export class CoreModule { }

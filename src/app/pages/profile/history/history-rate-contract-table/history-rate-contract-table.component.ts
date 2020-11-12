@@ -8,6 +8,7 @@ import { ProfileService } from './../../profile.service';
 import { RatejobDetailComponent } from '../../ratejob-detail/ratejob-detail.component';
 import { IServiceContract } from 'src/app/core/interfaces/iServiceContract';
 import { TextDialogComponent } from 'src/app/core/text-dialog/text-dialog.component';
+import { DynamicsService } from '../../config/dynamics/dynamics.service';
 
 @Component({
   selector: 'app-history-rate-contract-table',
@@ -23,7 +24,8 @@ export class HistoryRateContractTableComponent implements OnInit, AfterViewInit 
 
   constructor(
     private profileService: ProfileService,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private dynamicsService: DynamicsService
   ) { }
 
   ngOnInit(): void {
@@ -61,6 +63,13 @@ export class HistoryRateContractTableComponent implements OnInit, AfterViewInit 
     dialogText.componentInstance.propertyName = 'avaliationObs';
     dialogText.componentInstance.title = 'Observação Avaliação';
     dialogText.componentInstance.editable = false;
+  }
+  showObject(element: IServiceContract) {
+    if (element.object) {
+      this.profileService
+          .getDynamicConfig(element.serviceName)
+          .subscribe(service => this.dynamicsService.getDynamicObjectDialog(service, element.object));
+    }
   }
 
 }

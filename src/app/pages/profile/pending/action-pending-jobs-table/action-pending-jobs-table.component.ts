@@ -8,6 +8,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { RatejobDetailComponent } from '../../ratejob-detail/ratejob-detail.component';
 import { IServiceContract } from 'src/app/core/interfaces/iServiceContract';
 import { TextDialogComponent } from 'src/app/core/text-dialog/text-dialog.component';
+import { DynamicsService } from '../../config/dynamics/dynamics.service';
 
 @Component({
   selector: 'app-action-pending-jobs-table',
@@ -26,7 +27,8 @@ export class ActionPendingJobsTableComponent implements OnInit, AfterViewInit {
   constructor(
     private profileService: ProfileService,
     private messageService: MessageServiceResolver,
-    private dialog: MatDialog) { }
+    private dialog: MatDialog,
+    private dynamicsService: DynamicsService) { }
 
 
   ngOnInit(): void {
@@ -82,5 +84,12 @@ export class ActionPendingJobsTableComponent implements OnInit, AfterViewInit {
     dialogText.componentInstance.propertyName = 'observation';
     dialogText.componentInstance.title = 'Observação';
     dialogText.componentInstance.editable = false;
+  }
+  showObject(element: IServiceContract) {
+    if (element.object) {
+      this.profileService
+          .getDynamicConfig(element.serviceName)
+          .subscribe(service => this.dynamicsService.getDynamicObjectDialog(service, element.object));
+    }
   }
 }

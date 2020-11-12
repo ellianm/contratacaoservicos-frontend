@@ -70,6 +70,7 @@ export class ServicesResultComponent implements OnInit {
     this.serviceContract.dtSolicitation = (new Date).toString();
     this.serviceContract.observation = this.selectedElement.observation;
     this.serviceContract.value = this.selectedElement.value;
+    this.serviceContract.object = JSON.parse(this.activatedRoute.snapshot.params.object);
     this.servicesResultService.contract(this.serviceContract).subscribe(
       () => {
         this.messageServiceResolver.success('Contrato realizado com sucesso!');

@@ -29,18 +29,18 @@ export class DynamicMaidComponent implements OnInit, DynamicComponent {
         const users = userList.filter(user => user.user.id != this.userService.userToken.id);
         for (let u in users) {
           this.dataResult.push({
-              jobName:users[u].jobName,
-              user: {
-                id: users[u].user.id, 
-                name: users[u].user.name,
-                avatarUrl: users[u].user.avatarUrl,
-                telefone: users[u].user.telefone,
-                email: users[u].user.email             
-              },
-              rate: users[u].rate,
-              value: null
+            jobName: users[u].jobName,
+            user: {
+              id: users[u].user.id,
+              name: users[u].user.name,
+              avatarUrl: users[u].user.avatarUrl,
+              telefone: users[u].user.telefone,
+              email: users[u].user.email
+            },
+            rate: users[u].rate,
+            value: null
           });
-        } 
+        }
         this.getValues(this.dataResult);
       });
     } else {
@@ -74,7 +74,10 @@ export class DynamicMaidComponent implements OnInit, DynamicComponent {
       {
         serviceName: this.serviceName,
         dynamic: true,
-        data: JSON.stringify(this.dataResult)
+        data: JSON.stringify(this.dataResult),
+        object: JSON.stringify({
+          rooms: this.rooms,
+          days: this.days})
       }
     ]);
   }

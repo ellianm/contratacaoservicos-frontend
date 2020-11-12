@@ -9,6 +9,7 @@ import { IRateJob } from '../../../../core/interfaces/iRateJob';
 import { RatejobDetailComponent } from '../../ratejob-detail/ratejob-detail.component';
 import { IServiceContract } from 'src/app/core/interfaces/iServiceContract';
 import { TextDialogComponent } from 'src/app/core/text-dialog/text-dialog.component';
+import { DynamicsService } from '../../config/dynamics/dynamics.service';
 @Component({
   selector: 'app-rate-pending-jobs-table',
   templateUrl: './rate-pending-jobs-table.component.html',
@@ -25,7 +26,8 @@ export class RatePendingJobsTableComponent implements OnInit, AfterViewInit {
   constructor(
     private profileService: ProfileService,
     private messageService: MessageServiceResolver,
-    private dialog: MatDialog) { }
+    private dialog: MatDialog,
+    private dynamicsService: DynamicsService) { }
 
 
   ngOnInit() {
@@ -74,6 +76,13 @@ export class RatePendingJobsTableComponent implements OnInit, AfterViewInit {
     dialogText.componentInstance.propertyName = 'avaliationObs';
     dialogText.componentInstance.title = 'Observação Avaliação';
     dialogText.componentInstance.editable = true;
+  }
+  showObject(element: IServiceContract) {
+    if (element.object) {
+      this.profileService
+          .getDynamicConfig(element.serviceName)
+          .subscribe(service => this.dynamicsService.getDynamicObjectDialog(service, element.object));
+    }
   }
 
 

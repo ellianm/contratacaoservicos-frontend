@@ -34,7 +34,7 @@ export class UserJobsComponent implements OnInit {
   add(event: MatChipInputEvent): void {
     const found = this.jobList.filter(JobIndex => JobIndex.jobName === event.value);
     if (!found.length) {
-      this.jobList.push({jobName: event.value.trim(), id:null, user: this.user, value: null, observation:null});
+      this.jobList.push({jobName: event.value.trim(), id:null, user: this.user, value: null, observation:null, object:null});
       if (event.input) {
         event.input.value = '';
       }

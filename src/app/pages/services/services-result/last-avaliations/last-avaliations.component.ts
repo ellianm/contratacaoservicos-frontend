@@ -15,7 +15,7 @@ export class LastAvaliationsComponent implements OnInit {
   dataSource = new MatTableDataSource<IRateJob>();
   @Input() userId: string;
   @Input() serviceName: string;
-  displayedColumns: string[] = ['observation', 'avaliation'];
+  displayedColumns: string[] = ['avaliationObs', 'avaliation'];
   constructor(private profileService: ProfileService) { }
 
   ngOnInit(): void {

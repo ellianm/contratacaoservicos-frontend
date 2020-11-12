@@ -21,6 +21,7 @@ import { RegisterComponent } from './register.component';
 import { RegisterService } from './register.service';
 import { TermosDeUsoePrivacidadeComponent } from './termos-de-usoe-privacidade/termos-de-usoe-privacidade.component';
 import { UserNotTakenValidatorService } from './user-not-taken.validator.service';
+import { PoCalendarModule } from '@po-ui/ng-components';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,8 @@ import { UserNotTakenValidatorService } from './user-not-taken.validator.service
     MatDatepickerModule,
     MatIconModule,
     MatButtonModule,
-    NgxMaskModule.forRoot()
+    NgxMaskModule.forRoot(),
+    PoCalendarModule
   ],
   providers: [UserNotTakenValidatorService, RegisterService]
 })

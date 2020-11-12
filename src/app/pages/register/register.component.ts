@@ -10,6 +10,7 @@ import { RegisterService } from './register.service';
 import { TermosDeUsoePrivacidadeComponent } from 'src/app/pages/register/termos-de-usoe-privacidade/termos-de-usoe-privacidade.component';
 import { CpfCnpjValidator } from '../../core/validators/cpf-cnpj.validator.service';
 import { MessageServiceResolver } from 'src/app/core/utils-message/message-service.service';
+import { formatDate } from '@angular/common';
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -81,9 +82,12 @@ export class RegisterComponent implements OnInit {
       funcao: ['', Validators.required],
       bairro: ['', Validators.required],
       confirmarSenha: ['', Validators.required],
-      isPrestador: ['', Validators.required],
+      isPrestador: [false, Validators.required],
       aceitouTermos: ['']
     });
+    this.form.get('dtNascimento')
+      .valueChanges
+      .subscribe(value => console.log(value) )
   }
 
   clearCep() {

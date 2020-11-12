@@ -9,7 +9,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 // Material
-import { MAT_DATE_LOCALE } from '@angular/material/core';
+import { MAT_DATE_LOCALE, DateAdapter, MAT_DATE_FORMATS } from '@angular/material/core';
 
 // Modules Proprios
 import { CoreModule } from './core/core.module';
@@ -20,6 +20,7 @@ import { HomeModule } from './pages/home/home.module';
 // Componentes Proprios (mover para módulos)
 import { PaginaNaoEncontradaComponent } from './pages/pagina-nao-encontrada/pagina-nao-encontrada.component';
 import { PoModule } from '@po-ui/ng-components';
+import { AppDateAdapter, APP_DATE_FORMATS } from './core/format-datepicker';
 
 
 @NgModule({

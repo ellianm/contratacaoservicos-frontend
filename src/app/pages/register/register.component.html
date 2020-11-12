@@ -102,13 +102,10 @@
           </div>
           <div class="form-holder">
             <span style="margin: 0px">
-              <mat-datepicker-toggle matSuffix [for]="picker">
-                <mat-icon style="font-size: 15px;" matDatepickerToggleIcon>date_range</mat-icon>
-              </mat-datepicker-toggle>
-              <mat-datepicker #picker></mat-datepicker>
+              <mat-icon style="font-size: 15px;" matDatepickerToggleIcon>date_range</mat-icon>
             </span>
-            <input [matDatepicker]="picker" formControlName="dtNascimento" name="dtNascimento" type="text"
-              class="form-control" placeholder="Data de Nascimento">
+            <input formControlName="dtNascimento" name="dtNascimento" type="date" class="form-control unstyled"
+              placeholder="Data de Nascimento">
             <mat-error *ngIf="form.get('dtNascimento').errors?.required">Data de Nascimento é
               obrigatório.<br></mat-error>
           </div>

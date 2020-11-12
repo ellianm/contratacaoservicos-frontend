@@ -50,6 +50,7 @@ import { DynamicConfigMaidComponent } from './config/dynamics/dynamic-config-mai
 import { InProgressClientJobsTableComponent } from './pending/in-progress-client-jobs-table/in-progress-client-jobs-table.component';
 import { AvatarComponent } from './avatar/avatar.component';
 import { UserDataFormComponent } from './config/user-data-form/user-data-form.component';
+import { DynamicMaidDialogComponent } from './dynamic-maid-dialog/dynamic-maid-dialog.component';
 
 
 
@@ -70,7 +71,8 @@ import { UserDataFormComponent } from './config/user-data-form/user-data-form.co
     DynamicConfigMaidComponent,
     InProgressClientJobsTableComponent,
     AvatarComponent,
-    UserDataFormComponent
+    UserDataFormComponent,
+    DynamicMaidDialogComponent
   ],
   exports: [
     ProfileComponent,

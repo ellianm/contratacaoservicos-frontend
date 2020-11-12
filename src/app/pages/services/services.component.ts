@@ -23,7 +23,6 @@ export class ServicesComponent implements OnInit {
   constructor(
     private activatedRoute: ActivatedRoute,
     private servicesService: ServicosService,
-    private userService: UserService,
     private router: Router,
     private messageService: MessageServiceResolver,
     private componentFactoryResolver: ComponentFactoryResolver) { }

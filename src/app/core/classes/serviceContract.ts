@@ -16,6 +16,7 @@ export class ServiceContract implements IServiceContract {
     client: IClient;
     value: number;
     avaliationObs: string;
+  object: any;
 
     constructor() {
         this.client = new Client();
