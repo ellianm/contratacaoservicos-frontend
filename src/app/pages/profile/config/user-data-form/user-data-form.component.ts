@@ -6,7 +6,6 @@ import { MessageServiceResolver } from 'src/app/core/utils-message/message-servi
 import { User } from 'src/app/core/classes/user';
 import { ProfileService } from '../../profile.service';
 import { AuthService } from 'src/app/core/auth/auth.service';
-import { UserService } from 'src/app/core/user/user.service';
 
 @Component({
   selector: 'app-user-data-form',
@@ -18,7 +17,10 @@ export class UserDataFormComponent implements OnInit {
   sexOptions = ['Masculino', 'Feminino', 'Outro'];
   @Input() form: FormGroup;
 
-  constructor(private profileService: ProfileService, private messageService: MessageServiceResolver, private userService: UserService) { }
+  constructor(
+    private profileService: ProfileService,
+    private messageService: MessageServiceResolver,
+    private authService: AuthService) { }
 
   ngOnInit(): void {
   }
@@ -61,8 +63,8 @@ export class UserDataFormComponent implements OnInit {
       .saveUpdate(user)
       .subscribe(
         () => {
+          this.authService.authenticate(user.userName, user.password);
           this.messageService.success('Alteração realizada com sucesso');
-          this.userService.setCep(user.cep);
         },
         () => this.messageService.error('Não foi possível alterar os dados cadastrais')
       );

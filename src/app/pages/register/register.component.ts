@@ -85,9 +85,6 @@ export class RegisterComponent implements OnInit {
       isPrestador: [false, Validators.required],
       aceitouTermos: ['']
     });
-    this.form.get('dtNascimento')
-      .valueChanges
-      .subscribe(value => console.log(value) )
   }
 
   clearCep() {
