@@ -26,7 +26,7 @@ export class DynamicConfigMaidComponent implements OnInit {
   createForm() {
     this.form = this.formBuilder.group(
       {
-        id:[''],
+        id: [''],
         smallSize: ['', Validators.required],
         mediumSize: ['', Validators.required],
         largeSize: ['', Validators.required],
@@ -38,6 +38,10 @@ export class DynamicConfigMaidComponent implements OnInit {
         cleaningHeavy: ['', Validators.required]
       }
     );
+    if (!this.user.isPrestador) {
+      this.form.disable();
+    }
+
   }
 
   configToForm(config: ConfigMaid) {

@@ -1,10 +1,10 @@
 <mat-form-field class="example-chip-list">
     <mat-chip-list #chipList aria-label="UserJob selection">
-      <mat-chip [selectable]="true" *ngFor="let userJob of jobList" (removed)="removeJob(userJob)">
+      <mat-chip [disabled]="!user.isPrestador" [selectable]="true" *ngFor="let userJob of jobList" (removed)="removeJob(userJob)">
         {{userJob.jobName}}
         <mat-icon matChipRemove>cancel</mat-icon>
       </mat-chip>
-      <input placeholder="Informe suas atribuições" [matChipInputFor]="chipList"
+      <input [disabled]="!user.isPrestador" placeholder="Informe suas atribuições" [matChipInputFor]="chipList"
         [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
         (matChipInputTokenEnd)="add($event)">
     </mat-chip-list>

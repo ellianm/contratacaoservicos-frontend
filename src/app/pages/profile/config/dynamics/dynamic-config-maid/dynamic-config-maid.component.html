@@ -102,7 +102,7 @@
     </form>
   </mat-card-content>
   <mat-card-actions align="start">
-    <button [disabled]="form.invalid" mat-button mat-stroked-button (click)="save()" color="primary">
+    <button [disabled]="form.invalid || form.disabled" mat-button mat-stroked-button (click)="save()" color="primary">
       <mat-icon class="mat-18">save</mat-icon>
       Salvar
     </button>
