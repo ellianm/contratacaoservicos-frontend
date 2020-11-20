@@ -7,7 +7,6 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
-import { DateAdapter, MAT_DATE_FORMATS } from '@angular/material/core';
 
 
 // Material
@@ -33,7 +32,7 @@ import { CpfCnpjValidator } from './validators/cpf-cnpj.validator.service';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { LoadingInterceptor } from './interceptors/loading-interceptor';
 import { TextDialogComponent } from './text-dialog/text-dialog.component';
-import { AppDateAdapter, APP_DATE_FORMATS } from 'src/app/core/format-datepicker';
+import { RequestInterceptor } from './interceptors/request.interceptor';
 
 
 
@@ -69,11 +68,16 @@ import { AppDateAdapter, APP_DATE_FORMATS } from 'src/app/core/format-datepicker
     MatDialogModule,
     MatOptionModule
   ],
-  providers: [MessageService, CpfCnpjValidator, {
-    provide: HTTP_INTERCEPTORS,
-    useClass: LoadingInterceptor,
-    multi: true
-  }
+  providers: [MessageService, CpfCnpjValidator,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: LoadingInterceptor,
+      multi: true
+    }, {
+      provide: HTTP_INTERCEPTORS,
+      useClass: RequestInterceptor,
+      multi: true
+    }
   ]
 })
 export class CoreModule { }
